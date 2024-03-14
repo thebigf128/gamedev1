@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force;
+    public LayerMask solidObjectsLayer;
 
     private float timer;
     public float aliveTime;
@@ -27,7 +28,7 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= aliveTime)
+        if (timer >= aliveTime || DidCollide(transform.position))
         {
             Destroy(gameObject);
         }
@@ -35,5 +36,10 @@ public class BulletScript : MonoBehaviour
         {
             timer++;
         }
+    }
+
+    private bool DidCollide(Vector3 targetPos)
+    {
+        return Physics2D.OverlapCircle(targetPos, 0.3f, solidObjectsLayer) != null;
     }
 }

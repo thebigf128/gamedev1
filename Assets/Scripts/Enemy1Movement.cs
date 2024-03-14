@@ -18,7 +18,7 @@ public class Enemy1Movement : MonoBehaviour
         // }
 
         float distance = Vector3.Distance(player.position, transform.position);
-        if (distance < 5f) {
+        if (distance < 10f) {
             Vector3 direction = (player.position - transform.position).normalized;
 
             for (int i = 0; i < 360; i++) {
